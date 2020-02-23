@@ -15,17 +15,18 @@
 		"-search",
 		"github@2.0.0",
 		"pageview-count@1.0.1",
-		"toggle-chapters",
-		"styles-less",
-		"multipart",
-		"splitter",
-		"donate",
-		"custom-favicon",
-		"tbfed-pagefooter",
-		"auto-scroll-table",
-		"theme-default",
+		"styles-less@1.0.0",
+		"multipart@0.3.0",
+		"splitter@0.0.8",
+		"donate@1.0.2",
+		"custom-favicon@0.0.4",
+		"tbfed-pagefooter@0.0.1",
+		"auto-scroll-table@0.0.5",
+		"heading-anchors",
+		"cuav-chapters",
 		"prism@2.4.0",
-		"-highlight"
+		"-highlight",
+		"-sharing"
     ],
     "pluginsConfig": {
         "code": {
