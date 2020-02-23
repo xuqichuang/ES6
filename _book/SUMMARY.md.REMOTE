@@ -1,4 +1,4 @@
-# Summary
+# Table of contents
 
 * [简介](README.md)
 * [let 和 const 命令](let-const.md)
