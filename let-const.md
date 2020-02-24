@@ -223,20 +223,20 @@ console.log(i); // 5
 
 ES6 允许块级作用域的任意嵌套。
 
-```
-{{
-  {let insane = 'Hello World'}
-  console.log(insane); // 报错
-}};
+```js
+{
+  let insane = 'Hello World'
+}
+console.log(insane); // 报错
 ```
 
 内层作用域可以定义外层作用域的同名变量。
 
-```
-{{
+```js
+{
   let insane = 'Hello';
   {let insane = 'World'}
-}};
+};
 ```
 
 块级作用域的出现，实际上使得获得广泛应用的匿名立即执行函数表达式（匿名 IIFE）不再必要了。
@@ -514,3 +514,4 @@ JavaScript 语言存在一个顶层对象，它提供全局环境（即全局作
 * 不管是严格模式，还是普通模式，`new Function('return this')()`，总是会返回全局对象。但是，如果浏览器用了 CSP（Content Security Policy，内容安全策略），那么`eval`、`new Function`这些方法都可能无法使用。
 
 [ES2020](https://github.com/tc39/proposal-global) 在语言标准的层面，引入`globalThis`作为顶层对象。也就是说，任何环境下，`globalThis`都是存在的，都可以从它拿到顶层对象，指向全局环境下的`this`。
+
