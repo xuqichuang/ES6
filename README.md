@@ -1,8 +1,8 @@
 
 
-# ES6 入门简介
+# ES6 基础入门
 
-以下内容多节选自 [阮一峰](http://es6.ruanyifeng.com/#README) 的 ES6 博客
+以下内容多节选自 [阮一峰](http://es6.ruanyifeng.com/#README) 的 ES6 博客，本人摘抄了他的精髓，记录成册，与君共享
 
 
 ## 1.  ECMAScript 和 JavaScript 的关系是
