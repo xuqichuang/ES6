@@ -169,3 +169,130 @@ withinErrorMargin(1.1 + 1.3, 2.4) // true
 ```
 
 上面的代码为浮点数运算，部署了一个误差检查函数。
+
+# 6. Math.trunc() * 
+
+`Math.trunc`方法用于去除一个数的小数部分，返回整数部分。
+
+```javascript
+Math.trunc(4.1) // 4
+Math.trunc(4.9) // 4
+Math.trunc(-4.1) // -4
+Math.trunc(-4.9) // -4
+Math.trunc(-0.1234) // -0
+```
+
+对于非数值，`Math.trunc`内部使用`Number`方法将其先转为数值。
+
+```javascript
+Math.trunc('123.456') // 123
+Math.trunc(true) //1
+Math.trunc(false) // 0
+Math.trunc(null) // 0
+```
+
+对于空值和无法截取整数的值，返回`NaN`。
+
+```javascript
+Math.trunc(NaN);      // NaN
+Math.trunc('foo');    // NaN
+Math.trunc('1w');    // NaN
+Math.trunc();         // NaN
+Math.trunc(undefined) // NaN
+```
+
+对于没有部署这个方法的环境，可以用下面的代码模拟。
+
+```javascript
+Math.trunc = Math.trunc || function(x) {
+  return x < 0 ? Math.ceil(x) : Math.floor(x);
+};
+```
+
+# 7. Math.sign()
+
+`Math.sign`方法用来判断一个数到底是正数、负数、还是零。对于非数值，会先将其转换为数值。
+
+它会返回五种值。
+
+- 参数为正数，返回`+1`；
+- 参数为负数，返回`-1`；
+- 参数为 0，返回`0`；
+- 参数为-0，返回`-0`;
+- 其他数值，返回`NaN`。
+
+如果参数是非数值，会自动转为数值。对于那些无法转为数值的值，会返回`NaN`。
+
+```javascript
+Math.sign('')  // 0
+Math.sign(true)  // +1
+Math.sign(false)  // 0
+Math.sign(null)  // 0
+Math.sign('9')  // +1
+Math.sign('foo')  // NaN
+Math.sign()  // NaN
+Math.sign(undefined)  // NaN
+```
+
+# 8. Math.cbrt()
+
+`Math.cbrt`方法用于计算一个数的立方根。
+
+```javascript
+Math.cbrt(-1) // -1
+Math.cbrt(0)  // 0
+Math.cbrt(1)  // 1
+Math.cbrt(2)  // 1.2599210498948734
+```
+
+对于非数值，`Math.cbrt`方法内部也是先使用`Number`方法将其转为数值。
+
+```javascript
+Math.cbrt('8') // 2
+Math.cbrt('hello') // NaN
+```
+
+# 9. Math.hypot()
+
+`Math.hypot`方法返回所有参数的平方和的平方根。
+
+如果参数不是数值，`Math.hypot`方法会将其转为数值。只要有一个参数无法转为数值，就会返回 NaN。
+
+```javascript
+Math.hypot(3, 4);        // 5
+Math.hypot(3, 4, 5);     // 7.0710678118654755
+Math.hypot();            // 0
+Math.hypot(NaN);         // NaN
+Math.hypot(3, 4, 'foo'); // NaN
+Math.hypot(3, 4, '5');   // 7.0710678118654755
+Math.hypot(-3);          // 3
+```
+
+# 10. 指数运算符 **
+
+ES2016 新增了一个指数运算符（`**`）。
+
+```javascript
+2 ** 2 // 4
+2 ** 3 // 8
+```
+
+这个运算符的一个特点是右结合，而不是常见的左结合。多个指数运算符连用时，是从最右边开始计算的。
+
+```javascript
+// 相当于 2 ** (3 ** 2)
+2 ** 3 ** 2
+// 512
+```
+
+指数运算符可以与等号结合，形成一个新的赋值运算符（`**=`）。
+
+```javascript
+let a = 1.5;
+a **= 2;
+// 等同于 a = a * a;
+
+let b = 4;
+b **= 3;
+// 等同于 b = b * b * b;
+```
