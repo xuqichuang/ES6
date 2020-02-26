@@ -7,5 +7,6 @@
 * [字符串的新增方法](string-new-method.md)
 * [正则的扩展](RegExp-extend.md)
 * [数值的扩展](number-extend.md)
+* [函数的扩展](function-extend.md)
 
 
