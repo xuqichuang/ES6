@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>变量的解构赋值 · ES6 入门简介</title>
+        <title>对象的扩展 · ES6 入门简介</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -93,10 +93,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="string-extend.html" />
+    <link rel="next" href="object-new-method.html" />
     
     
-    <link rel="prev" href="let-const.html" />
+    <link rel="prev" href="array-extend.html" />
     
 
     </head>
@@ -164,7 +164,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3" data-path="destructuring-assignment.html">
+        <li class="chapter " data-level="1.3" data-path="destructuring-assignment.html">
             
                 <a href="destructuring-assignment.html">
             
@@ -269,7 +269,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.10" data-path="object-extend.html">
+        <li class="chapter active" data-level="1.10" data-path="object-extend.html">
             
                 <a href="object-extend.html">
             
@@ -329,7 +329,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >变量的解构赋值</a>
+        <a href="." >对象的扩展</a>
     </h1>
 </div>
 
@@ -344,87 +344,8 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x53D8;&#x91CF;&#x7684;&#x89E3;&#x6784;&#x8D4B;&#x503C;">&#x53D8;&#x91CF;&#x7684;&#x89E3;&#x6784;&#x8D4B;&#x503C;</h1>
-<p><strong>&#x91CD;&#x8981;&#x77E5;&#x8BC6;&#x70B9; &#xFF1A;</strong></p>
-<h2 id="1-&#x4EA4;&#x6362;&#x53D8;&#x91CF;&#x7684;&#x503C;-">1. &#x4EA4;&#x6362;&#x53D8;&#x91CF;&#x7684;&#x503C; *</h2>
-<pre class="language-"><code class="lang-text">let [x,y] = [1,2]
-[x,y] = [y,x]
-</code></pre>
-<p>&#x4E0A;&#x9762;&#x4EE3;&#x7801;&#x4EA4;&#x6362;&#x53D8;&#x91CF;x&#x548C;y&#x7684;&#x503C;&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x5199;&#x6CD5;&#x4E0D;&#x4EC5;&#x7B80;&#x6D01;&#xFF0C;&#x800C;&#x4E14;&#x6613;&#x8BFB;&#xFF0C;&#x8BED;&#x4E49;&#x975E;&#x5E38;&#x6E05;&#x6670;&#x3002;</p>
-<h2 id="2-&#x4ECE;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x591A;&#x4E2A;&#x503C;-">2. &#x4ECE;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x591A;&#x4E2A;&#x503C; *</h2>
-<p>&#x51FD;&#x6570;&#x53EA;&#x80FD;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x503C;&#xFF0C;&#x5982;&#x679C;&#x8981;&#x8FD4;&#x56DE;&#x591A;&#x4E2A;&#x503C;&#xFF0C;&#x53EA;&#x80FD;&#x5C06;&#x5B83;&#x4EEC;&#x653E;&#x5728;&#x6570;&#x7EC4;&#x6216;&#x5BF9;&#x8C61;&#x91CC;&#x8FD4;&#x56DE;&#x3002;&#x6709;&#x4E86;&#x89E3;&#x6784;&#x8D4B;&#x503C;&#xFF0C;&#x53D6;&#x51FA;&#x8FD9;&#x4E9B;&#x503C;&#x5C31;&#x975E;&#x5E38;&#x65B9;&#x4FBF;&#x3002;</p>
-<pre class="language-"><code class="lang-text">// &#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;,&#x6570;&#x7EC4;&#x4E2D;&#x53D6;&#x51FA;&#x591A;&#x4E2A;&#x5BF9;&#x8C61;
-function example() {
-  return [1, 2, 3];
-}
-let [a, b, c] = example();
-// &#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;,&#x5BF9;&#x8C61;&#x4E2D;&#x53D6;&#x51FA;&#x591A;&#x4E2A;&#x5BF9;&#x8C61;
-function example() {
-  return {
-    foo: 1,
-    bar: 2
-  };
-}
-let { foo, bar } = example();
-</code></pre>
-<h2 id="3-&#x51FD;&#x6570;&#x53C2;&#x6570;&#x7684;&#x5B9A;&#x4E49;-">3. &#x51FD;&#x6570;&#x53C2;&#x6570;&#x7684;&#x5B9A;&#x4E49; *</h2>
-<p>&#x89E3;&#x6784;&#x8D4B;&#x503C;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x5730;&#x5C06;&#x4E00;&#x7EC4;&#x53C2;&#x6570;&#x4E0E;&#x53D8;&#x91CF;&#x540D;&#x5BF9;&#x5E94;&#x8D77;&#x6765;&#x3002;</p>
-<pre class="language-"><code class="lang-text">// &#x53C2;&#x6570;&#x662F;&#x4E00;&#x7EC4;&#x6709;&#x6B21;&#x5E8F;&#x7684;&#x503C;
-function f([x, y, z]) { ... }
-f([1, 2, 3]);
-
-// &#x53C2;&#x6570;&#x662F;&#x4E00;&#x7EC4;&#x65E0;&#x6B21;&#x5E8F;&#x7684;&#x503C;
-function f({x, y, z}) { ... }
-f({z: 3, y: 2, x: 1});
-</code></pre>
-<h2 id="4-&#x63D0;&#x53D6;-json-&#x6570;&#x636E;-">4. &#x63D0;&#x53D6; JSON &#x6570;&#x636E; *</h2>
-<p>&#x53EF;&#x4EE5;&#x5FEB;&#x901F;&#x63D0;&#x53D6; JSON &#x6570;&#x636E;&#x7684;&#x503C;&#x3002;</p>
-<pre class="language-"><code class="lang-text">let jsonData = {
-  id: 42,
-  status: &quot;OK&quot;,
-  data: [867, 5309]
-};
-
-let { id, status, data: number } = jsonData;
-
-console.log(id, status, number);
-// 42, &quot;OK&quot;, [867, 5309]
-</code></pre>
-<h2 id="5-&#x51FD;&#x6570;&#x53C2;&#x6570;&#x7684;&#x9ED8;&#x8BA4;&#x503C;">5. &#x51FD;&#x6570;&#x53C2;&#x6570;&#x7684;&#x9ED8;&#x8BA4;&#x503C;</h2>
-<p>&#x6307;&#x5B9A;&#x53C2;&#x6570;&#x7684;&#x9ED8;&#x8BA4;&#x503C;&#xFF0C;&#x5C31;&#x907F;&#x514D;&#x4E86;&#x5728;&#x51FD;&#x6570;&#x4F53;&#x5185;&#x90E8;&#x518D;&#x5199;var foo = config.foo || &apos;default foo&apos;;&#x8FD9;&#x6837;&#x7684;&#x8BED;&#x53E5;&#x3002;</p>
-<pre class="language-"><code class="lang-text">const fn = function({x=&apos;hello&apos;,y=&apos;world&apos;}={}){
-    ...
-}
-</code></pre>
-<h2 id="6-&#x904D;&#x5386;-map-&#x7ED3;&#x6784;-">6. &#x904D;&#x5386; Map &#x7ED3;&#x6784; *</h2>
-<p>&#x4EFB;&#x4F55;&#x90E8;&#x7F72;&#x4E86; Iterator &#x63A5;&#x53E3;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x90FD;&#x53EF;&#x4EE5;&#x7528;for...of&#x5FAA;&#x73AF;&#x904D;&#x5386;&#x3002;Map &#x7ED3;&#x6784;&#x539F;&#x751F;&#x652F;&#x6301; Iterator &#x63A5;&#x53E3;&#xFF0C;&#x914D;&#x5408;&#x53D8;&#x91CF;&#x7684;&#x89E3;&#x6784;&#x8D4B;&#x503C;&#xFF0C;&#x83B7;&#x53D6;&#x952E;&#x540D;&#x548C;&#x952E;&#x503C;&#x5C31;&#x975E;&#x5E38;&#x65B9;&#x4FBF;&#x3002;</p>
-<pre class="language-"><code class="lang-text">const map = new Map();
-map.set(&apos;first&apos;, &apos;hello&apos;);
-map.set(&apos;second&apos;, &apos;world&apos;);
-
-for (let [key, value] of map) {
-  console.log(key + &quot; is &quot; + value);
-}
-// first is hello
-// second is world
-</code></pre>
-<p>&#x5982;&#x679C;&#x53EA;&#x60F3;&#x83B7;&#x53D6;&#x952E;&#x540D;&#xFF0C;&#x6216;&#x8005;&#x53EA;&#x60F3;&#x83B7;&#x53D6;&#x952E;&#x503C;&#xFF0C;&#x53EF;&#x4EE5;&#x5199;&#x6210;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#x3002;</p>
-<pre class="language-"><code class="lang-text">// &#x83B7;&#x53D6;&#x952E;&#x540D;
-for (let [key] of map) {
-  // ...
-}
-
-// &#x83B7;&#x53D6;&#x952E;&#x503C;
-for (let [,value] of map) {
-  // ...
-}
-</code></pre>
-<h2 id="7-&#x5F15;&#x5165;&#x6A21;&#x5757;&#x7684;&#x6307;&#x5B9A;&#x65B9;&#x6CD5;">7. &#x5F15;&#x5165;&#x6A21;&#x5757;&#x7684;&#x6307;&#x5B9A;&#x65B9;&#x6CD5;</h2>
-<p>&#x52A0;&#x8F7D;&#x6A21;&#x5757;&#x65F6;&#xFF0C;&#x5F80;&#x5F80;&#x9700;&#x8981;&#x6307;&#x5B9A;&#x8F93;&#x5165;&#x54EA;&#x4E9B;&#x65B9;&#x6CD5;&#x3002;&#x89E3;&#x6784;&#x8D4B;&#x503C;&#x4F7F;&#x5F97;&#x8F93;&#x5165;&#x8BED;&#x53E5;&#x975E;&#x5E38;&#x6E05;&#x6670;&#x3002;</p>
-<pre class="language-"><code class="lang-text">const { SourceMapConsumer, SourceNode } = require(&quot;source-map&quot;);
-</code></pre>
-<footer class="page-footer"><span class="copyright">Copyright &#xA9; lucky__star 2020 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x672C;&#x4E66;&#x53D1;&#x5E03;&#x65F6;&#x95F4;&#xFF1A;
-2020-02-24 23:53
+                                <footer class="page-footer"><span class="copyright">Copyright &#xA9; lucky__star 2020 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x672C;&#x4E66;&#x53D1;&#x5E03;&#x65F6;&#x95F4;&#xFF1A;
+2020-02-27 23:48
 </span></footer>
                                 
                                 </section>
@@ -452,12 +373,12 @@ for (let [,value] of map) {
 
             
                 
-                <a href="let-const.html" class="navigation navigation-prev " aria-label="Previous page: let 和 const 命令">
+                <a href="array-extend.html" class="navigation navigation-prev " aria-label="Previous page: 数组的扩展">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="string-extend.html" class="navigation navigation-next " aria-label="Next page: 字符串的扩展">
+                <a href="object-new-method.html" class="navigation navigation-next " aria-label="Next page: 对象的新增方法">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -468,7 +389,7 @@ for (let [,value] of map) {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"变量的解构赋值","level":"1.3","depth":1,"next":{"title":"字符串的扩展","level":"1.4","depth":1,"path":"string-extend.md","ref":"string-extend.md","articles":[]},"previous":{"title":"let 和 const 命令","level":"1.2","depth":1,"path":"let-const.md","ref":"let-const.md","articles":[]},"dir":"ltr"},"config":{"plugins":["code@0.1.0","back-to-top-button@0.1.4","search-pro@2.0.2","-search","github@2.0.0","pageview-count@1.0.1","styles-less@1.0.0","multipart@0.3.0","splitter@0.0.8","donate@1.0.2","custom-favicon@0.0.4","tbfed-pagefooter@0.0.1","auto-scroll-table@0.0.5","heading-anchors","cuav-chapters","prism@2.4.0","-highlight","-sharing"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © lucky__star 2020","modify_label":"本书发布时间：","modify_format":"YYYY-MM-DD HH:mm"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"],"lang":{"flow":"typescript"}},"github":{"url":"https://github.com/xuqichuang/es6"},"styles-less":{},"splitter":{},"search-pro":{},"auto-scroll-table":{},"cuav-chapters":{"summaryMaxSize":20,"useLimitExpanded":false},"multipart":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"donate":{"alipay":"","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"http://photonj.photo.store.qq.com/psc?/V13gPhs63CGiSQ/KMnzwBNJT4ZeiPmlYdobb*Qhqb4yWSLU9F37KZ.frb7oO*4iG4Y*ker4Zo5huSOkukeOEd3zrLT1d5nk55xbXw!!/b&bo=gASABIAEgAQRECc!&rf=viewer_311","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"favicon":"images/favicon.ico","back-to-top-button":{},"pageview-count":{},"custom-favicon":{},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"lucky__star","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ES6 入门简介","links":{"sidebar":{"博客中心":"https://xuqichuang.gitbook.io/es6/"}},"gitbook":"3.2.3","description":"好记性不如G笔记"},"file":{"path":"destructuring-assignment.md","mtime":"2020-02-24T15:53:01.785Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-27T15:49:05.552Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"对象的扩展","level":"1.10","depth":1,"next":{"title":"对象的新增方法","level":"1.11","depth":1,"path":"object-new-method.md","ref":"object-new-method.md","articles":[]},"previous":{"title":"数组的扩展","level":"1.9","depth":1,"path":"array-extend.md","ref":"array-extend.md","articles":[]},"dir":"neutral"},"config":{"plugins":["code@0.1.0","back-to-top-button@0.1.4","search-pro@2.0.2","-search","github@2.0.0","pageview-count@1.0.1","styles-less@1.0.0","multipart@0.3.0","splitter@0.0.8","donate@1.0.2","custom-favicon@0.0.4","tbfed-pagefooter@0.0.1","auto-scroll-table@0.0.5","heading-anchors","cuav-chapters","prism@2.4.0","-highlight","-sharing"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © lucky__star 2020","modify_label":"本书发布时间：","modify_format":"YYYY-MM-DD HH:mm"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"],"lang":{"flow":"typescript"}},"github":{"url":"https://github.com/xuqichuang/es6"},"styles-less":{},"splitter":{},"search-pro":{},"auto-scroll-table":{},"cuav-chapters":{"summaryMaxSize":20,"useLimitExpanded":false},"multipart":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"donate":{"alipay":"","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"http://photonj.photo.store.qq.com/psc?/V13gPhs63CGiSQ/KMnzwBNJT4ZeiPmlYdobb*Qhqb4yWSLU9F37KZ.frb7oO*4iG4Y*ker4Zo5huSOkukeOEd3zrLT1d5nk55xbXw!!/b&bo=gASABIAEgAQRECc!&rf=viewer_311","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"favicon":"images/favicon.ico","back-to-top-button":{},"pageview-count":{},"custom-favicon":{},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"lucky__star","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ES6 入门简介","links":{"sidebar":{"博客中心":"https://xuqichuang.gitbook.io/es6/"}},"gitbook":"3.2.3","description":"好记性不如G笔记"},"file":{"path":"object-extend.md","mtime":"2020-02-27T15:48:48.859Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-27T15:49:05.552Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
