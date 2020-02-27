@@ -1,4 +1,4 @@
-# Table of contents
+# Summary
 
 * [简介](README.md)
 * [let 和 const 命令](let-const.md)
@@ -8,5 +8,8 @@
 * [正则的扩展](RegExp-extend.md)
 * [数值的扩展](number-extend.md)
 * [函数的扩展](function-extend.md)
+* [数组的扩展](array-extend.md)
+* [对象的扩展](object-extend.md)
+* [对象的新增方法](object-new-method.md)
 
 

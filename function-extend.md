@@ -490,5 +490,448 @@ headAndTail(1, 2, 3, 4, 5)
 // [1,[2,3,4,5]]
 ```
 
-### 2）使用注意点
+### 2）使用注意点 * 
 
+* 函数体内的`this`对象，就是定义时所在的对象，而不是使用时所在的对象。
+* 不可以当作构造函数，也就是说，不可以使用`new`命令，否则会抛出一个错误。
+* 不可以使用`arguments`对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。
+* 不可以使用`yield`命令，因此箭头函数不能用作 Generator 函数。
+
+ 1.  `this`对象的指向是可变的，但是在箭头函数中，它是固定的。
+
+```javascript
+function foo() {
+  setTimeout(() => {
+    console.log('id:', this.id);
+  }, 100);
+}
+
+var id = 21;
+
+foo.call({ id: 42 });
+// id: 42
+```
+
+ 2. 箭头函数可以让`setTimeout`里面的`this`，绑定定义时所在的作用域，而不是指向运行时所在的作用域。
+
+```javascript
+function Timer() {
+  this.s1 = 0;
+  this.s2 = 0;
+  // 箭头函数
+  setInterval(() => this.s1++, 1000);
+  // 普通函数
+  setInterval(function () {
+    this.s2++;
+  }, 1000);
+}
+
+var timer = new Timer();
+
+setTimeout(() => console.log('s1: ', timer.s1), 3100);
+setTimeout(() => console.log('s2: ', timer.s2), 3100);
+// s1: 3
+// s2: 0
+```
+
+3. `this`指向的固定化，并不是因为箭头函数内部有绑定`this`的机制，实际原因是箭头函数根本没有自己的`this`，导致内部的`this`就是外层代码块的`this`。正是因为它没有`this`，所以也就不能用作构造函数。
+
+箭头函数转成 ES5 的代码如下。
+
+```javascript
+// ES6
+function foo() {
+  setTimeout(() => {
+    console.log('id:', this.id);
+  }, 100);
+}
+
+// ES5
+function foo() {
+  var _this = this;
+
+  setTimeout(function () {
+    console.log('id:', _this.id);
+  }, 100);
+}
+```
+
+4. 除了`this`，以下三个变量在箭头函数之中也是不存在的，指向外层函数的对应变量：`arguments`、`super`、`new.target`。
+
+```javascript
+function foo() {
+  setTimeout(() => {
+    console.log('args:', arguments);
+  }, 100);
+}
+
+foo(2, 4, 6, 8)
+// args: [2, 4, 6, 8]
+```
+
+5. 由于箭头函数没有自己的`this`，所以当然也就不能用`call()`、`apply()`、`bind()`这些方法去改变`this`的指向。
+
+```javascript
+(function() {
+  return [
+    (() => this.x).bind({ x: 'inner' })()
+  ];
+}).call({ x: 'outer' });
+// ['outer']
+```
+
+### 3）不适用场合 *
+
+1. 定义对象的方法时使用箭头函数，且该方法内部包括`this`，以下是错误示范
+
+```javascript
+const cat = {
+  lives: 9,
+  jumps: () => {
+    this.lives--;
+  }
+}
+```
+
+`cat.jumps()`方法是一个箭头函数，这是错误的。调用`cat.jumps()`时，如果是普通函数，该方法内部的`this`指向`cat`；如果写成上面那样的箭头函数，使得`this`指向全局对象，因此不会得到预期结果。这是因为对象不构成单独的作用域，导致`jumps`箭头函数定义时的作用域就是全局作用域。
+
+2. 需要动态`this`的时候，也不应使用箭头函数。
+
+```javascript
+var button = document.getElementById('press');
+button.addEventListener('click', () => {
+  this.classList.toggle('on');
+});
+```
+
+上面代码运行时，点击按钮会报错，因为`button`的监听函数是一个箭头函数，导致里面的`this`就是全局对象。如果改成普通函数，`this`就会动态指向被点击的按钮对象。
+
+另外，如果函数体很复杂，有许多行，或者函数内部有大量的读写操作，不单纯是为了计算值，这时也不应该使用箭头函数，而是要使用普通函数，这样可以提高代码可读性。
+
+## 6. 尾调用优化
+
+### 1）什么是尾调用
+
+尾调用（Tail Call）是函数式编程的一个重要概念，本身非常简单，一句话就能说清楚，就是指某个函数的最后一步是调用另一个函数。
+
+```javascript
+function f(x){
+  return g(x);
+}
+```
+
+函数`f`的最后一步是调用函数`g`，这就叫尾调用。
+
+以下三种情况，都不属于尾调用。
+
+```javascript
+// 情况一
+function f(x){
+  let y = g(x);
+  return y;
+}
+
+// 情况二
+function f(x){
+  return g(x) + 1;
+}
+
+// 情况三
+function f(x){
+  g(x);
+}
+```
+
+情况一是调用函数`g`之后，还有赋值操作，所以不属于尾调用，即使语义完全一样。情况二也属于调用后还有操作，即使写在一行内。情况三等同于下面的代码。函数无返回值默认返回 `undefined`
+
+```javascript
+function f(x){
+  g(x);
+  return undefined;
+}
+```
+
+尾调用不一定出现在函数尾部，只要是最后一步操作即可。
+
+```javascript
+function f(x) {
+  if (x > 0) {
+    return m(x)
+  }
+  return n(x);
+}
+```
+
+函数`m`和`n`都属于尾调用，因为它们都是函数`f`的最后一步操作。
+
+### 2）尾调用优化
+
+尾调用由于是函数的最后一步操作，所以不需要保留外层函数的调用帧，因为调用位置、内部变量等信息都不会再用到了，只要直接用内层函数的调用帧，取代外层函数的调用帧就可以了。
+
+```javascript
+function f() {
+  let m = 1;
+  let n = 2;
+  return g(m + n);
+}
+f();
+
+// 等同于
+function f() {
+  return g(3);
+}
+f();
+
+// 等同于
+g(3);
+```
+
+上面代码中，如果函数`g`不是尾调用，函数`f`就需要保存内部变量`m`和`n`的值、`g`的调用位置等信息。但由于调用`g`之后，函数`f`就结束了，所以执行到最后一步，完全可以删除`f(x)`的调用帧，只保留`g(3)`的调用帧。
+
+这就叫做“尾调用优化”（Tail call optimization），即只保留内层函数的调用帧。如果所有函数都是尾调用，那么完全可以做到每次执行时，调用帧只有一项，这将大大节省内存。这就是“尾调用优化”的意义。
+
+### 3）尾递归 *
+
+函数调用自身，称为递归。如果尾调用自身，就称为尾递归。
+
+递归非常耗费内存，因为需要同时保存成千上百个调用帧，很容易发生“栈溢出”错误（stack overflow）。但对于尾递归来说，由于只存在一个调用帧，所以永远不会发生“栈溢出”错误。
+
+```javascript
+function factorial(n) {
+  if (n === 1) return 1;
+  return n * factorial(n - 1);
+}
+
+factorial(5) // 120
+```
+
+上面代码是一个阶乘函数，计算`n`的阶乘，最多需要保存`n`个调用记录，复杂度 O(n) 。
+
+如果改写成尾递归，只保留一个调用记录，复杂度 O(1) 。
+
+```javascript
+function factorial(n, total) {
+  if (n === 1) return total;
+  return factorial(n - 1, n * total);
+}
+
+factorial(5, 1) // 120
+```
+
+### 4）递归函数的改写 * 柯里化
+
+尾递归的实现，往往需要改写递归函数，确保最后一步只调用自身。做到这一点的方法，就是把所有用到的内部变量改写成函数的参数。这样做的缺点就是不太直观，第一眼很难看出来，两个方法可以解决这个问题
+
+1. 在尾递归函数之外，再提供一个正常形式的函数。
+
+```javascript
+function tailFactorial(n, total) {
+  if (n === 1) return total;
+  return tailFactorial(n - 1, n * total);
+}
+
+function factorial(n) {
+  return tailFactorial(n, 1);
+}
+
+factorial(5) // 120
+```
+
+上面代码通过一个正常形式的阶乘函数`factorial`，调用尾递归函数`tailFactorial`，看起来就正常多了。
+
+函数式编程有一个概念，叫做柯里化（currying），意思是将多参数的函数转换成单参数的形式。这里也可以使用柯里化。
+
+2. 就是采用 ES6 的函数默认值，这种就简单多了
+
+```javascript
+function factorial(n, total = 1) {
+  if (n === 1) return total;
+  return factorial(n - 1, n * total);
+}
+
+factorial(5) // 120
+```
+
+### 5）严格模式
+
+ES6 的尾调用优化只在严格模式下开启，正常模式是无效的。
+
+这是因为在正常模式下，函数内部有两个变量，可以跟踪函数的调用栈。
+
+- `func.arguments`：返回调用时函数的参数。
+- `func.caller`：返回调用当前函数的那个函数。
+
+尾调用优化发生时，函数的调用栈会改写，因此上面两个变量就会失真。严格模式禁用这两个变量，所以尾调用模式仅在严格模式下生效。
+
+```javascript
+function restricted() {
+  'use strict';
+  restricted.caller;    // 报错
+  restricted.arguments; // 报错
+}
+restricted();
+```
+
+### 6）尾递归优化的实现 * 蹦床函数
+
+尾递归优化只在严格模式下生效，那么正常模式下，或者那些不支持该功能的环境中，有没有办法也使用尾递归优化呢？回答是可以的，就是自己实现尾递归优化。
+
+它的原理非常简单。尾递归之所以需要优化，原因是调用栈太多，造成溢出，那么只要减少调用栈，就不会溢出。怎么做可以减少调用栈呢？就是采用“循环”换掉“递归”。
+
+下面是一个正常的递归函数。
+
+```javascript
+function sum(x, y) {
+  if (y > 0) {
+    return sum(x + 1, y - 1);
+  } else {
+    return x;
+  }
+}
+
+sum(1, 100000)
+// Uncaught RangeError: Maximum call stack size exceeded(…)
+```
+
+蹦床函数（trampoline）可以将递归执行转为循环执行。
+
+```javascript
+function trampoline(f) {
+  while (f && f instanceof Function) {
+    f = f();
+  }
+  return f;
+}
+```
+
+上面就是蹦床函数的一个实现，它接受一个函数`f`作为参数。只要`f`执行后返回一个函数，就继续执行。注意，这里是返回一个函数，然后执行该函数，而不是函数里面调用函数，这样就避免了递归执行，从而就消除了调用栈过大的问题。
+
+然后，要做的就是将原来的递归函数，改写为每一步返回另一个函数。
+
+```javascript
+function sum(x, y) {
+  if (y > 0) {
+    return sum.bind(null, x + 1, y - 1);
+  } else {
+    return x;
+  }
+}
+trampoline(sum(1, 100000))
+// 100001
+```
+
+上面代码中，`sum`函数的每次执行，都会返回自身的另一个版本，使用蹦床函数执行`sum`，就不会发生调用栈溢出。
+
+蹦床函数并不是真正的尾递归优化，下面的实现才是。
+
+```javascript
+function tco(f) {
+  var value;
+  var active = false;
+  var accumulated = [];
+
+  return function accumulator() {
+    accumulated.push(arguments);
+    if (!active) {
+      active = true;
+      while (accumulated.length) {
+        value = f.apply(this, accumulated.shift());
+      }
+      active = false;
+      return value;
+    }
+  };
+}
+
+var sum = tco(function(x, y) {
+  if (y > 0) {
+    return sum(x + 1, y - 1)
+  }
+  else {
+    return x
+  }
+});
+
+sum(1, 100000)
+// 100001
+```
+
+上面代码中，`tco`函数是尾递归优化的实现，它的奥妙就在于状态变量`active`。默认情况下，这个变量是不激活的。一旦进入尾递归优化的过程，这个变量就激活了。然后，每一轮递归`sum`返回的都是`undefined`，所以就避免了递归执行；而`accumulated`数组存放每一轮`sum`执行的参数，总是有值的，这就保证了`accumulator`函数内部的`while`循环总是会执行。这样就很巧妙地将“递归”改成了“循环”，而后一轮的参数会取代前一轮的参数，保证了调用栈只有一层。
+
+## 7. 函数参数的尾逗号
+
+`ES2017` [允许](https://github.com/jeffmo/es-trailing-function-commas)函数的最后一个参数有尾逗号（trailing comma）。
+
+```
+function a(
+    x,
+    y
+){ ... }
+a(
+	'xxx',
+	'yyy'
+)
+```
+
+如果像上面这样，将参数写成多行（即每个参数占据一行），以后修改代码的时候，想为函数`a`添加第三个参数，或者调整参数的次序，就势必要在原来最后一个参数后面添加一个逗号。这对于版本管理系统来说，就会显示添加逗号的那一行也发生了变动。因此新的语法规定定义和调用函数时，尾部允许有逗号
+
+```
+function a(
+    x,
+    y,
+){ ... }
+a(
+	'xxx',
+	'yyy',
+)
+```
+
+这样的规定也使得，函数参数与数组和对象的尾逗号规则，保持一致了。
+
+## 8. Function.prototype.toString()
+
+[ES2019](https://github.com/tc39/Function-prototype-toString-revision) 对函数实例的`toString()`方法做出了修改。
+
+`toString()`方法返回函数代码本身，以前会省略注释和空格。
+
+修改前
+
+```javascript
+function /* foo comment */ foo () {}
+
+foo.toString()
+// function foo() {}
+```
+
+修改后的写法
+
+```javascript
+function /* foo comment */ foo () {}
+
+foo.toString()
+// "function /* foo comment */ foo () {}"
+```
+
+## 9. catch 命令的参数省略
+
+JavaScript 语言的`try...catch`结构，以前明确要求`catch`命令后面必须跟参数，接受`try`代码块抛出的错误对象
+
+```javascript
+try {
+  // ...
+} catch (err) {
+  // 处理错误
+}
+```
+
+上面代码中，`catch`命令后面带有参数`err`。
+
+很多时候，`catch`代码块可能用不到这个参数。但是，为了保证语法正确，还是必须写。[ES2019](https://github.com/tc39/proposal-optional-catch-binding) 做出了改变，允许`catch`语句省略参数。
+
+```javascript
+try {
+  // ...
+} catch {
+  // ...
+}
+```
