@@ -475,3 +475,308 @@ let person = {name: 'John', age: 20};
 
 ## 6. 数组实例的 fill()
 
+### 1）含义
+
+`fill`方法使用给定值，填充一个数组。
+
+```javascript
+['a', 'b', 'c'].fill(7)
+// [7, 7, 7]
+
+new Array(3).fill(7)
+// [7, 7, 7]
+```
+
+上面代码表明，`fill`方法用于空数组的初始化非常方便。数组中已有的元素，会被全部抹去。
+
+### 2）用法
+
+`fill`方法还可以接受第二个和第三个参数，用于指定填充的起始位置和结束位置。
+
+```javascript
+['a', 'b', 'c'].fill(7, 1, 2)
+// ['a', 7, 'c']
+```
+
+如果填充的类型为对象，那么被赋值的是同一个内存地址的对象，而不是深拷贝对象。
+
+```javascript
+let arr = new Array(3).fill({name: "Mike"});
+arr[0].name = "Ben";
+arr
+// [{name: "Ben"}, {name: "Ben"}, {name: "Ben"}]
+
+let arr = new Array(3).fill([]);
+arr[0].push(5);
+arr
+// [[5], [5], [5]]
+```
+
+## 7. 数组实例的 entries()， keys()，和values()
+
+### 1）含义
+
+`keys()`是对键名的遍历、`values()`是对键值的遍历，`entries()`是对键值对的遍历。
+
+```javascript
+for (let index of ['a', 'b'].keys()) {
+  console.log(index);
+}
+// 0
+// 1
+for (let elem of ['a', 'b'].values()) {
+  console.log(elem);
+}
+// 'a'
+// 'b'
+for (let [index, elem] of ['a', 'b'].entries()) {
+  console.log(index, elem);
+}
+// 0 "a"
+// 1 "b"
+```
+
+如果不使用`for...of`循环，可以手动调用遍历器对象的`next`方法，进行遍历。
+
+```javascript
+let letter = ['a', 'b', 'c'];
+let entries = letter.entries();
+console.log(entries.next().value); // [0, 'a']
+console.log(entries.next().value); // [1, 'b']
+console.log(entries.next().value); // [2, 'c']
+```
+
+## 8. 数组实例的 includes()
+
+### 1）含义
+
+`Array.prototype.includes`方法返回一个布尔值，表示某个数组是否包含给定的值，与字符串的`includes`方法类似。
+
+```javascript
+[1, 2, 3].includes(2)     // true
+[1, 2, 3].includes(4)     // false
+[1, 2, NaN].includes(NaN) // true
+```
+
+### 2）用法
+
+该方法的第二个参数表示搜索的起始位置，默认为`0`。如果第二个参数为负数，则表示倒数的位置，如果这时它大于数组长度（比如第二个参数为`-4`，但数组长度为`3`），则会重置为从`0`开始。
+
+```javascript
+[1, 2, 3].includes(3, 3);  // false
+[1, 2, 3].includes(3, -1); // true
+```
+
+没有该方法之前，我们通常使用数组的`indexOf`方法，检查是否包含某个值。
+
+```javascript
+if (arr.indexOf(el) !== -1) {
+  // ...
+}
+```
+
+`indexOf`方法有两个缺点
+
+* 不够语义化，它的含义是找到参数值的第一个出现位置，所以要去比较是否不等于`-1`，表达起来不够直观。
+* 它内部使用严格相等运算符（`===`）进行判断，这会导致对`NaN`的误判。
+
+```javascript
+[NaN].indexOf(NaN)
+// -1
+
+```
+
+`includes`使用的是不一样的判断算法，就没有这个问题。
+
+```javascript
+[NaN].includes(NaN)
+// true
+```
+
+Map 和 Set 数据结构有一个`has`方法，需要注意与`includes`区分。
+
+- Map 结构的`has`方法，是用来查找键名的，比如`Map.prototype.has(key)`、`WeakMap.prototype.has(key)`、`Reflect.has(target, propertyKey)`。
+- Set 结构的`has`方法，是用来查找值的，比如`Set.prototype.has(value)`、`WeakSet.prototype.has(value)`。
+
+## 9. 数组实例的 flat(), flatMap()
+
+### 1）flat() 含义
+
+数组的成员有时还是数组，`Array.prototype.flat()`用于将嵌套的数组“拉平”，变成一维的数组。该方法返回一个新数组，对原数据没有影响。
+
+```javascript
+[1, 2, [3, 4]].flat()
+// [1, 2, 3, 4]
+```
+
+### 2）flat() 用法
+
+`flat()`默认只会“拉平”一层，如果想要“拉平”多层的嵌套数组，可以将`flat()`方法的参数写成一个整数，表示想要拉平的层数，默认为1。参数为2，表示要“拉平”两层的嵌套数组。
+
+```javascript
+[1, 2, [3, [4, 5]]].flat()
+// [1, 2, 3, [4, 5]]
+
+[1, 2, [3, [4, 5]]].flat(2)
+// [1, 2, 3, 4, 5]
+```
+
+如果不管有多少层嵌套，都要转成一维数组，可以用`Infinity`关键字作为参数。
+
+```javascript
+[1, [2, [3]]].flat(Infinity)
+// [1, 2, 3]
+```
+
+如果原数组有空位，`flat()`方法会跳过空位。
+
+```javascript
+[1, 2, , 4, 5].flat()
+// [1, 2, 4, 5]
+```
+
+### 3） flatMap() 含义
+
+`flatMap()`方法对原数组的每个成员执行一个函数（相当于执行`Array.prototype.map()`），然后对返回值组成的数组执行`flat()`方法。该方法返回一个新数组，不改变原数组。
+
+```javascript
+// 相当于 [[2, 4], [3, 6], [4, 8]].flat()
+[2, 3, 4].flatMap((x) => [x, x * 2])
+// [2, 4, 3, 6, 4, 8]
+```
+
+`flatMap()`只能展开一层数组，返回的还是一个嵌套数组。
+
+```javascript
+// 相当于 [[[2]], [[4]], [[6]], [[8]]].flat()
+[1, 2, 3, 4].flatMap(x => [[x * 2]])
+// [[2], [4], [6], [8]]
+```
+
+### 4）flatMap() 用法
+
+`flatMap()`方法的参数是一个遍历函数，该函数可以接受三个参数，分别是当前数组成员、当前数组成员的位置（从零开始）、原数组。
+
+## 10. 数组的空位
+
+### 1）含义
+
+数组的空位指，数组的某一个位置没有任何值。比如，`Array`构造函数返回的数组都是空位。
+
+```javascript
+Array(3) // [, , ,]
+```
+
+注意，空位不是`undefined`，一个位置的值等于`undefined`，依然是有值的。空位是没有任何值，`in`运算符可以说明这一点。
+
+```javascript
+0 in [undefined, undefined, undefined] // true
+0 in [, , ,] // false
+```
+
+### 2）用法
+
+`ES5` 对空位的处理，已经很不一致了，大多数情况下会忽略空位。
+
+- `forEach()`, `filter()`, `reduce()`, `every()` 和`some()`都会跳过空位。
+- `map()`会跳过空位，但会保留这个值
+- `join()`和`toString()`会将空位视为`undefined`，而`undefined`和`null`会被处理成空字符串。
+
+`ES6` 则是明确将空位转为`undefined`。
+
+`Array.from`方法会将数组的空位，转为`undefined`，也就是说，这个方法不会忽略空位。
+
+```javascript
+Array.from(['a',,'b'])
+// [ "a", undefined, "b" ]
+```
+
+扩展运算符（`...`）也会将空位转为`undefined`。
+
+```javascript
+[...['a',,'b']]
+// [ "a", undefined, "b" ]
+```
+
+`copyWithin()`会连空位一起拷贝。
+
+```javascript
+[,'a','b',,].copyWithin(2,0) // [,"a",,"a"]
+```
+
+`fill()`会将空位视为正常的数组位置。
+
+```javascript
+new Array(3).fill('a') // ["a","a","a"]
+```
+
+`for...of`循环也会遍历空位。
+
+```javascript
+let arr = [, ,];
+for (let i of arr) {
+  console.log(1);
+}
+// 1
+// 1
+```
+
+`entries()`、`keys()`、`values()`、`find()`和`findIndex()`会将空位处理成`undefined`。
+
+```javascript
+// entries()
+[...[,'a'].entries()] // [[0,undefined], [1,"a"]]
+
+// keys()
+[...[,'a'].keys()] // [0,1]
+
+// values()
+[...[,'a'].values()] // [undefined,"a"]
+
+// find()
+[,'a'].find(x => true) // undefined
+
+// findIndex()
+[,'a'].findIndex(x => true) // 0
+```
+
+由于空位的处理规则非常不统一，所以建议避免出现空位。
+
+## 11. Array.prototype.sort() 的排序稳定性
+
+### 2）含义
+
+排序稳定性（stable sorting）是排序算法的重要属性，指的是排序关键字相同的项目，排序前后的顺序不变。
+
+```javascript
+const arr = [
+  'peach',
+  'straw',
+  'apple',
+  'spork'
+];
+
+const stableSorting = (s1, s2) => {
+  if (s1[0] < s2[0]) return -1;
+  return 1;
+};
+
+arr.sort(stableSorting)
+// ["apple", "peach", "straw", "spork"]
+```
+
+上面代码对数组`arr`按照首字母进行排序。排序结果中，`straw`在`spork`的前面，跟原始顺序一致，所以排序算法`stableSorting`是稳定排序。
+
+```javascript
+const unstableSorting = (s1, s2) => {
+  if (s1[0] <= s2[0]) return -1;
+  return 1;
+};
+
+arr.sort(unstableSorting)
+// ["apple", "peach", "spork", "straw"]
+```
+
+上面代码中，排序结果是`spork`在`straw`前面，跟原始顺序相反，所以排序算法`unstableSorting`是不稳定的。
+
+早先的 `ECMAScript` 没有规定，`Array.prototype.sort()`的默认排序算法是否稳定，留给浏览器自己决定，这导致某些实现是不稳定的。[ES2019](https://github.com/tc39/ecma262/pull/1340) 明确规定，`Array.prototype.sort()`的默认排序算法必须稳定。这个规定已经做到了，现在 JavaScript 各个主要实现的默认排序算法都是稳定的。
