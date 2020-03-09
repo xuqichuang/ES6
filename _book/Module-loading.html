@@ -539,14 +539,14 @@
             
         </li>
     
-        <li class="chapter " data-level="1.28" data-path="ArrayBuffer.html">
+        <li class="chapter " data-level="1.28" data-path="newest-proposal.html">
             
-                <a href="ArrayBuffer.html">
+                <a href="newest-proposal.html">
             
                     
                         <b>1.28.</b>
                     
-                    ArrayBuffer
+                    最新提案
             
                 </a>
             
@@ -614,9 +614,431 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <footer class="page-footer"><span class="copyright">Copyright &#xA9; lucky__star 2020 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x672C;&#x4E66;&#x53D1;&#x5E03;&#x65F6;&#x95F4;&#xFF1A;
-2020-02-29 00:41
-</span></footer>
+                                <h1 id="module-&#x7684;&#x52A0;&#x8F7D;&#x5B9E;&#x73B0;">Module &#x7684;&#x52A0;&#x8F7D;&#x5B9E;&#x73B0;</h1>
+<h2 id="1-&#x6D4F;&#x89C8;&#x5668;&#x52A0;&#x8F7D;">1. &#x6D4F;&#x89C8;&#x5668;&#x52A0;&#x8F7D;</h2>
+<h3 id="1&#xFF09;&#x4F20;&#x7EDF;&#x65B9;&#x6CD5;">1&#xFF09;&#x4F20;&#x7EDF;&#x65B9;&#x6CD5;</h3>
+<p>HTML &#x7F51;&#x9875;&#x4E2D;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x901A;&#x8FC7;``&#x6807;&#x7B7E;&#x52A0;&#x8F7D; JavaScript &#x811A;&#x672C;&#x3002;</p>
+<pre class="language-"><code class="lang-html"><span class="token comment">&lt;!-- &#x9875;&#x9762;&#x5185;&#x5D4C;&#x7684;&#x811A;&#x672C; --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>application/javascript<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  // module code
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token comment">&lt;!-- &#x5916;&#x90E8;&#x811A;&#x672C; --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>application/javascript<span class="token punctuation">&quot;</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>path/to/myModule.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<p>&#x4E0A;&#x9762;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x7531;&#x4E8E;&#x6D4F;&#x89C8;&#x5668;&#x811A;&#x672C;&#x7684;&#x9ED8;&#x8BA4;&#x8BED;&#x8A00;&#x662F; JavaScript&#xFF0C;&#x56E0;&#x6B64;<code>type=&quot;application/javascript&quot;</code>&#x53EF;&#x4EE5;&#x7701;&#x7565;&#x3002;</p>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x662F;&#x540C;&#x6B65;&#x52A0;&#x8F7D; JavaScript &#x811A;&#x672C;&#xFF0C;&#x5373;&#x6E32;&#x67D3;&#x5F15;&#x64CE;&#x9047;&#x5230;``&#x6807;&#x7B7E;&#x5C31;&#x4F1A;&#x505C;&#x4E0B;&#x6765;&#xFF0C;&#x7B49;&#x5230;&#x6267;&#x884C;&#x5B8C;&#x811A;&#x672C;&#xFF0C;&#x518D;&#x7EE7;&#x7EED;&#x5411;&#x4E0B;&#x6E32;&#x67D3;&#x3002;&#x5982;&#x679C;&#x662F;&#x5916;&#x90E8;&#x811A;&#x672C;&#xFF0C;&#x8FD8;&#x5FC5;&#x987B;&#x52A0;&#x5165;&#x811A;&#x672C;&#x4E0B;&#x8F7D;&#x7684;&#x65F6;&#x95F4;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x811A;&#x672C;&#x4F53;&#x79EF;&#x5F88;&#x5927;&#xFF0C;&#x4E0B;&#x8F7D;&#x548C;&#x6267;&#x884C;&#x7684;&#x65F6;&#x95F4;&#x5C31;&#x4F1A;&#x5F88;&#x957F;&#xFF0C;&#x56E0;&#x6B64;&#x9020;&#x6210;&#x6D4F;&#x89C8;&#x5668;&#x5835;&#x585E;&#xFF0C;&#x7528;&#x6237;&#x4F1A;&#x611F;&#x89C9;&#x5230;&#x6D4F;&#x89C8;&#x5668;&#x201C;&#x5361;&#x6B7B;&#x201D;&#x4E86;&#xFF0C;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x54CD;&#x5E94;&#x3002;&#x8FD9;&#x663E;&#x7136;&#x662F;&#x5F88;&#x4E0D;&#x597D;&#x7684;&#x4F53;&#x9A8C;&#xFF0C;&#x6240;&#x4EE5;&#x6D4F;&#x89C8;&#x5668;&#x5141;&#x8BB8;&#x811A;&#x672C;&#x5F02;&#x6B65;&#x52A0;&#x8F7D;&#xFF0C;&#x4E0B;&#x9762;&#x5C31;&#x662F;&#x4E24;&#x79CD;&#x5F02;&#x6B65;&#x52A0;&#x8F7D;&#x7684;&#x8BED;&#x6CD5;&#x3002;</p>
+<pre class="language-"><code class="lang-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>path/to/myModule.js<span class="token punctuation">&quot;</span></span> <span class="token attr-name">defer</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>path/to/myModule.js<span class="token punctuation">&quot;</span></span> <span class="token attr-name">async</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<p>&#x4E0A;&#x9762;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;<code>`&#x6807;&#x7B7E;&#x6253;&#x5F00;</code>defer<code>&#x6216;</code>async`&#x5C5E;&#x6027;&#xFF0C;&#x811A;&#x672C;&#x5C31;&#x4F1A;&#x5F02;&#x6B65;&#x52A0;&#x8F7D;&#x3002;&#x6E32;&#x67D3;&#x5F15;&#x64CE;&#x9047;&#x5230;&#x8FD9;&#x4E00;&#x884C;&#x547D;&#x4EE4;&#xFF0C;&#x5C31;&#x4F1A;&#x5F00;&#x59CB;&#x4E0B;&#x8F7D;&#x5916;&#x90E8;&#x811A;&#x672C;&#xFF0C;&#x4F46;&#x4E0D;&#x4F1A;&#x7B49;&#x5B83;&#x4E0B;&#x8F7D;&#x548C;&#x6267;&#x884C;&#xFF0C;&#x800C;&#x662F;&#x76F4;&#x63A5;&#x6267;&#x884C;&#x540E;&#x9762;&#x7684;&#x547D;&#x4EE4;&#x3002;</p>
+<p><code>defer</code>&#x4E0E;<code>async</code>&#x7684;&#x533A;&#x522B;&#x662F;&#xFF1A;<code>defer</code>&#x8981;&#x7B49;&#x5230;&#x6574;&#x4E2A;&#x9875;&#x9762;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x6B63;&#x5E38;&#x6E32;&#x67D3;&#x7ED3;&#x675F;&#xFF08;DOM &#x7ED3;&#x6784;&#x5B8C;&#x5168;&#x751F;&#x6210;&#xFF0C;&#x4EE5;&#x53CA;&#x5176;&#x4ED6;&#x811A;&#x672C;&#x6267;&#x884C;&#x5B8C;&#x6210;&#xFF09;&#xFF0C;&#x624D;&#x4F1A;&#x6267;&#x884C;&#xFF1B;<code>async</code>&#x4E00;&#x65E6;&#x4E0B;&#x8F7D;&#x5B8C;&#xFF0C;&#x6E32;&#x67D3;&#x5F15;&#x64CE;&#x5C31;&#x4F1A;&#x4E2D;&#x65AD;&#x6E32;&#x67D3;&#xFF0C;&#x6267;&#x884C;&#x8FD9;&#x4E2A;&#x811A;&#x672C;&#x4EE5;&#x540E;&#xFF0C;&#x518D;&#x7EE7;&#x7EED;&#x6E32;&#x67D3;&#x3002;&#x4E00;&#x53E5;&#x8BDD;&#xFF0C;<code>defer</code>&#x662F;&#x201C;&#x6E32;&#x67D3;&#x5B8C;&#x518D;&#x6267;&#x884C;&#x201D;&#xFF0C;<code>async</code>&#x662F;&#x201C;&#x4E0B;&#x8F7D;&#x5B8C;&#x5C31;&#x6267;&#x884C;&#x201D;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x591A;&#x4E2A;<code>defer</code>&#x811A;&#x672C;&#xFF0C;&#x4F1A;&#x6309;&#x7167;&#x5B83;&#x4EEC;&#x5728;&#x9875;&#x9762;&#x51FA;&#x73B0;&#x7684;&#x987A;&#x5E8F;&#x52A0;&#x8F7D;&#xFF0C;&#x800C;&#x591A;&#x4E2A;<code>async</code>&#x811A;&#x672C;&#x662F;&#x4E0D;&#x80FD;&#x4FDD;&#x8BC1;&#x52A0;&#x8F7D;&#x987A;&#x5E8F;&#x7684;&#x3002;</p>
+<h3 id="2&#xFF09;&#x52A0;&#x8F7D;&#x89C4;&#x5219;">2&#xFF09;&#x52A0;&#x8F7D;&#x89C4;&#x5219;</h3>
+<p>&#x6D4F;&#x89C8;&#x5668;&#x52A0;&#x8F7D; ES6 &#x6A21;&#x5757;&#xFF0C;&#x4E5F;&#x4F7F;&#x7528;<code>`&#x6807;&#x7B7E;&#xFF0C;&#x4F46;&#x662F;&#x8981;&#x52A0;&#x5165;</code>type=&quot;module&quot;`&#x5C5E;&#x6027;&#x3002;</p>
+<pre class="language-"><code class="lang-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>module<span class="token punctuation">&quot;</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>./foo.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<p>&#x4E0A;&#x9762;&#x4EE3;&#x7801;&#x5728;&#x7F51;&#x9875;&#x4E2D;&#x63D2;&#x5165;&#x4E00;&#x4E2A;&#x6A21;&#x5757;<code>foo.js</code>&#xFF0C;&#x7531;&#x4E8E;<code>type</code>&#x5C5E;&#x6027;&#x8BBE;&#x4E3A;<code>module</code>&#xFF0C;&#x6240;&#x4EE5;&#x6D4F;&#x89C8;&#x5668;&#x77E5;&#x9053;&#x8FD9;&#x662F;&#x4E00;&#x4E2A; ES6 &#x6A21;&#x5757;&#x3002;</p>
+<p>&#x6D4F;&#x89C8;&#x5668;&#x5BF9;&#x4E8E;&#x5E26;&#x6709;<code>type=&quot;module&quot;</code>&#x7684;<code>&#xFF0C;&#x90FD;&#x662F;&#x5F02;&#x6B65;&#x52A0;&#x8F7D;&#xFF0C;&#x4E0D;&#x4F1A;&#x9020;&#x6210;&#x5835;&#x585E;&#x6D4F;&#x89C8;&#x5668;&#xFF0C;&#x5373;&#x7B49;&#x5230;&#x6574;&#x4E2A;&#x9875;&#x9762;&#x6E32;&#x67D3;&#x5B8C;&#xFF0C;&#x518D;&#x6267;&#x884C;&#x6A21;&#x5757;&#x811A;&#x672C;&#xFF0C;&#x7B49;&#x540C;&#x4E8E;&#x6253;&#x5F00;&#x4E86;</code>&#x6807;&#x7B7E;&#x7684;<code>defer</code>&#x5C5E;&#x6027;&#x3002;</p>
+<pre class="language-"><code class="lang-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>module<span class="token punctuation">&quot;</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>./foo.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token comment">&lt;!-- &#x7B49;&#x540C;&#x4E8E; --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>module<span class="token punctuation">&quot;</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>./foo.js<span class="token punctuation">&quot;</span></span> <span class="token attr-name">defer</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<p>&#x5982;&#x679C;&#x7F51;&#x9875;&#x6709;&#x591A;&#x4E2A;<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>module<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span></code>&#xFF0C;&#x5B83;&#x4EEC;&#x4F1A;&#x6309;&#x7167;&#x5728;&#x9875;&#x9762;&#x51FA;&#x73B0;&#x7684;&#x987A;&#x5E8F;&#x4F9D;&#x6B21;&#x6267;&#x884C;&#x3002;</p>
+<p><script>标签的async属性也可以打开，这时只要加载完成，渲染引擎就会中断渲染立即执行。执行完成后，再恢复渲染。</p>
+<pre><code class="lang-html">&lt;script type=&quot;module&quot; src=&quot;./foo.js&quot; async&gt;&lt;/script&gt;
+</code></pre>
+<p>一旦使用了<code>async</code>属性，``就不会按照在页面出现的顺序执行，而是只要该模块加载完成，就执行该模块。</p>
+<p>浏览器使用es6模块，有几点注意事项</p>
+<ul>
+<li>代码是在模块作用域之中运行，而不是在全局作用域运行。模块内部的顶层变量，外部不可见。</li>
+<li>模块脚本自动采用严格模式，不管有没有声明<code>use strict</code>。</li>
+<li>模块之中，可以使用<code>import</code>命令加载其他模块（<code>.js</code>后缀不可省略，需要提供绝对 URL 或相对 URL），也可以使用<code>export</code>命令输出对外接口。</li>
+<li>模块之中，顶层的<code>this</code>关键字返回<code>undefined</code>，而不是指向<code>window</code>。也就是说，在模块顶层使用<code>this</code>关键字，是无意义的。</li>
+<li>同一个模块如果加载多次，将只执行一次。</li>
+</ul>
+<pre><code class="lang-javascript">import utils from &#39;https://example.com/js/utils.js&#39;;
+
+const x = 1;
+
+console.log(x === window.x); //false
+console.log(this === undefined); // true
+</code></pre>
+<p>利用顶层的<code>this</code>等于<code>undefined</code>这个语法点，可以侦测当前代码是否在 ES6 模块之中。</p>
+<pre><code class="lang-javascript">const isNotModuleScript = this !== undefined;
+</code></pre>
+<h2>2. ES6模块和CommonJS模块的差异</h2>
+<p> ES6 模块与 CommonJS 模块完全不同。它们有两个重大差异：</p>
+<ol>
+<li>CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。</li>
+<li>CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。</li>
+</ol>
+<p>CommonJS 模块输出的是值的拷贝，也就是说，一旦输出一个值，模块内部的变化就影响不到这个值。请看下面这个模块文件<code>lib.js</code>的例子。</p>
+<pre><code class="lang-javascript">// lib.js
+var counter = 3;
+function incCounter() {
+  counter++;
+}
+module.exports = {
+  counter: counter,
+  incCounter: incCounter,
+}
+</code></pre>
+<p>在<code>main.js</code>里面加载这个模块：</p>
+<pre><code class="lang-javascript">// main.js
+var mod = require(&#39;./lib&#39;);
+
+console.log(mod.counter);  // 3
+mod.incCounter();
+console.log(mod.counter); // 3
+</code></pre>
+<p>上面代码说明，<code>lib.js</code>模块加载以后，它的内部变化就影响不到输出的<code>mod.counter</code>了。这是因为<code>mod.counter</code>是一个原始类型的值，会被缓存。除非写成一个函数，才能得到内部变动后的值。</p>
+<pre><code class="lang-javascript">// lib.js
+var counter = 3;
+function incCounter() {
+  counter++;
+}
+module.exports = {
+  get counter() {
+    return counter
+  },
+  incCounter: incCounter,
+};
+</code></pre>
+<p>上面代码中，输出的<code>counter</code>属性实际上是一个取值器函数。现在再执行<code>main.js</code>，就可以正确读取内部变量<code>counter</code>的变动了。</p>
+<pre><code class="lang-bash">$ node main.js
+3
+4
+</code></pre>
+<p>ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。原始值变了，<code>import</code>加载的值也会跟着变。</p>
+<pre><code class="lang-javascript">// lib.js
+export let counter = 3;
+export function incCounter() {
+  counter++;
+}
+
+// main.js
+import { counter, incCounter } from &#39;./lib&#39;;
+console.log(counter); // 3
+incCounter();
+console.log(counter); // 4
+</code></pre>
+<h2>3. NodeJs 加载</h2>
+<h3>1）概述</h3>
+<p>Node.js 对 ES6 模块的处理比较麻烦，因为它有自己的 CommonJS 模块格式，与 ES6 模块格式是不兼容的。目前的解决方案是，将两者分开，ES6 模块和 CommonJS 采用各自的加载方案。从 v13.2 版本开始，Node.js 已经默认打开了 ES6 模块支持。</p>
+<p>Node.js 要求 ES6 模块采用<code>.mjs</code>后缀文件名。也就是说，只要脚本文件里面使用<code>import</code>或者<code>export</code>命令，那么就必须采用<code>.mjs</code>后缀名。Node.js 遇到<code>.mjs</code>文件，就认为它是 ES6 模块，默认启用严格模式。</p>
+<p>如果不希望将后缀名改成<code>.mjs</code>，可以在项目的<code>package.json</code>文件中，指定<code>type</code>字段为<code>module</code>。</p>
+<pre><code class="lang-javascript">{
+   &quot;type&quot;: &quot;module&quot;
+}
+</code></pre>
+<p>一旦设置了以后，该目录里面的 JS 脚本，就被解释用 ES6 模块。</p>
+<pre><code class="lang-bash"># 解释成 ES6 模块
+$ node my-app.js
+</code></pre>
+<p>注意，ES6 模块与 CommonJS 模块尽量不要混用。<code>require</code>命令不能加载<code>.mjs</code>文件，会报错，只有<code>import</code>命令才可以加载<code>.mjs</code>文件。反过来，<code>.mjs</code>文件里面也不能使用<code>require</code>命令，必须使用<code>import</code>。</p>
+<h3>2）main 字段</h3>
+<p><code>package.json</code>文件有两个字段可以指定模块的入口文件：<code>main</code>和<code>exports</code>。比较简单的模块，可以只使用<code>main</code>字段，指定模块加载的入口文件。</p>
+<pre><code class="lang-javascript">// ./node_modules/es-module-package/package.json
+{
+  &quot;type&quot;: &quot;module&quot;,
+  &quot;main&quot;: &quot;./src/index.js&quot;
+}
+</code></pre>
+<p>上面代码指定项目的入口脚本为<code>./src/index.js</code>，它的格式为 ES6 模块。如果没有<code>type</code>字段，<code>index.js</code>就会被解释为 CommonJS 模块。</p>
+<p>然后，<code>import</code>命令就可以加载这个模块。</p>
+<pre><code class="lang-javascript">// ./my-app.mjs
+
+import { something } from &#39;es-module-package&#39;;
+// 实际加载的是 ./node_modules/es-module-package/src/index.js
+</code></pre>
+<p>上面代码中，运行该脚本以后，Node.js 就会到<code>./node_modules</code>目录下面，寻找<code>es-module-package</code>模块，然后根据该模块<code>package.json</code>的<code>main</code>字段去执行入口文件。</p>
+<p>这时，如果用 CommonJS 模块的<code>require()</code>命令去加载<code>es-module-package</code>模块会报错，因为 CommonJS 模块不能处理<code>export</code>命令。</p>
+<h3>3）exports 字段</h3>
+<p><code>exports</code>字段的优先级高于<code>main</code>字段。它有多种用法。</p>
+<h4>（1）子目录别名</h4>
+<p><code>package.json</code>文件的<code>exports</code>字段可以指定脚本或子目录的别名。</p>
+<pre><code class="lang-javascript">// ./node_modules/es-module-package/package.json
+{
+  &quot;exports&quot;: {
+    &quot;./submodule&quot;: &quot;./src/submodule.js&quot;
+  }
+}
+</code></pre>
+<p>上面的代码指定<code>src/submodule.js</code>别名为<code>submodule</code>，然后就可以从别名加载这个文件。</p>
+<pre><code class="lang-javascript">import submodule from &#39;es-module-package/submodule&#39;;
+// 加载 ./node_modules/es-module-package/src/submodule.js
+</code></pre>
+<p>如果没有指定别名，就不能用“模块+脚本名”这种形式加载脚本。</p>
+<pre><code class="lang-javascript">// 报错
+import submodule from &#39;es-module-package/private-module.js&#39;;
+
+// 不报错
+import submodule from &#39;./node_modules/es-module-package/private-module.js&#39;;
+</code></pre>
+<h4>（2）main 的别名</h4>
+<p><code>exports</code>字段的别名如果是<code>.</code>，就代表模块的主入口，优先级高于<code>main</code>字段，并且可以直接简写成<code>exports</code>字段的值。</p>
+<pre><code class="lang-javascript">{
+  &quot;exports&quot;: {
+    &quot;.&quot;: &quot;./main.js&quot;
+  }
+}
+
+// 等同于
+{
+  &quot;exports&quot;: &quot;./main.js&quot;
+}
+</code></pre>
+<p>由于<code>exports</code>字段只有支持 ES6 的 Node.js 才认识，所以可以用来兼容旧版本的 Node.js。</p>
+<pre><code class="lang-javascript">{
+  &quot;main&quot;: &quot;./main-legacy.cjs&quot;,
+  &quot;exports&quot;: {
+    &quot;.&quot;: &quot;./main-modern.cjs&quot;
+  }
+}
+</code></pre>
+<p>上面代码中，老版本的 Node.js （不支持 ES6 模块）的入口文件是<code>main-legacy.cjs</code>，新版本的 Node.js 的入口文件是<code>main-modern.cjs</code>。</p>
+<h4>（3）按需引入</h4>
+<p>利用<code>.</code>这个别名，可以为 ES6 模块和 CommonJS 指定不同的入口。目前，这个功能需要在 Node.js 运行的时候，打开<code>--experimental-conditional-exports</code>标志。</p>
+<pre><code class="lang-javascript">{
+  &quot;type&quot;: &quot;module&quot;,
+  &quot;exports&quot;: {
+    &quot;.&quot;: {
+      &quot;require&quot;: &quot;./main.cjs&quot;,
+      &quot;default&quot;: &quot;./main.js&quot;
+    }
+  }
+}
+</code></pre>
+<p>上面代码中，别名<code>.</code>的<code>require</code>条件指定<code>require()</code>命令的入口文件（即 CommonJS 的入口），<code>default</code>条件指定其他情况的入口（即 ES6 的入口）。</p>
+<p>上面的写法可以简写如下。</p>
+<pre><code class="lang-javascript">{
+  &quot;exports&quot;: {
+    &quot;require&quot;: &quot;./main.cjs&quot;,
+    &quot;default&quot;: &quot;./main.js&quot;
+  }
+}
+</code></pre>
+<p>注意，如果同时还有其他别名，就不能采用简写，否则或报错。</p>
+<pre><code class="lang-javascript">{
+  // 报错
+  &quot;exports&quot;: {
+    &quot;./feature&quot;: &quot;./lib/feature.js&quot;,
+    &quot;require&quot;: &quot;./main.cjs&quot;,
+    &quot;default&quot;: &quot;./main.js&quot;
+  }
+}
+</code></pre>
+<h3>4）ES6模块加载CommonJS模块</h3>
+<p>目前，一个模块同时支持 ES6 和 CommonJS 两种格式的常见方法是，<code>package.json</code>文件的<code>main</code>字段指定 CommonJS 入口，给 Node.js 使用；<code>module</code>字段指定 ES6 模块入口，给打包工具使用，因为 Node.js 不认识<code>module</code>字段。</p>
+<p>有了上一节的条件加载以后，Node.js 本身就可以同时处理两种模块。</p>
+<pre><code class="lang-javascript">// ./node_modules/pkg/package.json
+{
+  &quot;type&quot;: &quot;module&quot;,
+  &quot;main&quot;: &quot;./index.cjs&quot;,
+  &quot;exports&quot;: {
+    &quot;require&quot;: &quot;./index.cjs&quot;,
+    &quot;default&quot;: &quot;./wrapper.mjs&quot;
+  }
+}
+</code></pre>
+<p>上面代码指定了 CommonJS 入口文件<code>index.cjs</code>，下面是这个文件的代码。</p>
+<pre><code class="lang-javascript">// ./node_modules/pkg/index.cjs
+exports.name = &#39;value&#39;;
+</code></pre>
+<p>然后，ES6 模块可以加载这个文件。</p>
+<pre><code class="lang-javascript">// ./node_modules/pkg/wrapper.mjs
+import cjsModule from &#39;./index.cjs&#39;;
+export const name = cjsModule.name;
+</code></pre>
+<p>注意，<code>import</code>命令加载 CommonJS 模块，只能整体加载，不能只加载单一的输出项。</p>
+<pre><code class="lang-javascript">// 正确
+import packageMain from &#39;commonjs-package&#39;;
+
+// 报错
+import { method } from &#39;commonjs-package&#39;;
+</code></pre>
+<p>还有一种变通的加载方法，就是使用 Node.js 内置的<code>module.createRequire()</code>方法。</p>
+<pre><code class="lang-javascript">/ cjs.cjs
+module.exports = &#39;cjs&#39;;
+
+// esm.mjs
+import { createRequire } from &#39;module&#39;;
+
+const require = createRequire(import.meta.url);
+
+const cjs = require(&#39;./cjs.cjs&#39;);
+cjs === &#39;cjs&#39;; // true
+</code></pre>
+<h3>5）CommonJS加载ES6模块</h3>
+<p>CommonJS 的<code>require</code>命令不能加载 ES6 模块，会报错，只能使用<code>import()</code>这个方法加载。</p>
+<pre><code class="lang-javascript">(async () =&gt; {
+  await import(&#39;./my-app.mjs&#39;);
+})();
+</code></pre>
+<h3>6）NodeJs 的内置模块</h3>
+<p>Node.js 的内置模块可以整体加载，也可以加载指定的输出项。</p>
+<pre><code class="lang-javascript">// 整体加载
+import EventEmitter from &#39;events&#39;;
+const e = new EventEmitter();
+
+// 加载指定的输出项
+import { readFile } from &#39;fs&#39;;
+readFile(&#39;./foo.txt&#39;, (err, source) =&gt; {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(source);
+  }
+});
+</code></pre>
+<h3>7）加载路径</h3>
+<p>ES6 模块的加载路径必须给出脚本的完整路径，不能省略脚本的后缀名。<code>import</code>命令和<code>package.json</code>文件的<code>main</code>字段如果省略脚本的后缀名，会报错。</p>
+<pre><code class="lang-javascript">// ES6 模块中将报错
+import { something } from &#39;./index&#39;;
+</code></pre>
+<p>为了与浏览器的<code>import</code>加载规则相同，Node.js 的<code>.mjs</code>文件支持 URL 路径。</p>
+<pre><code class="lang-javascript">import &#39;./foo.mjs?query=1&#39;; // 加载 ./foo 传入参数 ?query=1
+</code></pre>
+<h3>8）内部变量</h3>
+<p>ES6 模块应该是通用的，同一个模块不用修改，就可以用在浏览器环境和服务器环境。为了达到这个目标，Node 规定 ES6 模块之中不能使用 CommonJS 模块的特有的一些内部变量。</p>
+<p>首先，就是<code>this</code>关键字。ES6 模块之中，顶层的<code>this</code>指向<code>undefined</code>；CommonJS 模块的顶层<code>this</code>指向当前模块，这是两者的一个重大差异。</p>
+<p>其次，以下这些顶层变量在 ES6 模块之中都是不存在的。</p>
+<ul>
+<li><code>arguments</code></li>
+<li><code>require</code></li>
+<li><code>module</code></li>
+<li><code>exports</code></li>
+<li><code>__filename</code></li>
+<li><code>__dirname</code></li>
+</ul>
+<h2>4. 循环加载</h2>
+<p>“循环加载”（circular dependency）指的是，<code>a</code>脚本的执行依赖<code>b</code>脚本，而<code>b</code>脚本的执行又依赖<code>a</code>脚本。</p>
+<pre><code class="lang-javascript">// a.js
+var b = require(&#39;b&#39;);
+
+// b.js
+var a = require(&#39;a&#39;);
+</code></pre>
+<p>通常，“循环加载”表示存在强耦合，如果处理不好，还可能导致递归加载，使得程序无法执行，因此应该避免出现。</p>
+<p>但是实际上，这是很难避免的，尤其是依赖关系复杂的大项目，很容易出现<code>a</code>依赖<code>b</code>，<code>b</code>依赖<code>c</code>，<code>c</code>又依赖<code>a</code>这样的情况。这意味着，模块加载机制必须考虑“循环加载”的情况。</p>
+<h3>1）CommonJS模块的加载原理</h3>
+<p>CommonJS 的一个模块，就是一个脚本文件。<code>require</code>命令第一次加载该脚本，就会执行整个脚本，然后在内存生成一个对象。</p>
+<pre><code class="lang-javascript">{
+  id: &#39;...&#39;,
+  exports: { ... },
+  loaded: true,
+  ...
+}
+</code></pre>
+<p>上面代码就是 Node 内部加载模块后生成的一个对象。该对象的<code>id</code>属性是模块名，<code>exports</code>属性是模块输出的各个接口，<code>loaded</code>属性是一个布尔值，表示该模块的脚本是否执行完毕。其他还有很多属性，这里都省略了。</p>
+<p>以后需要用到这个模块的时候，就会到<code>exports</code>属性上面取值。即使再次执行<code>require</code>命令，也不会再次执行该模块，而是到缓存之中取值。也就是说，CommonJS 模块无论加载多少次，都只会在第一次加载时运行一次，以后再加载，就返回第一次运行的结果，除非手动清除系统缓存。</p>
+<h3>2）CommonJS模块的循环加载</h3>
+<p>让我们来看，Node <a href="https://nodejs.org/api/modules.html#modules_cycles">官方文档</a>里面的例子。脚本文件<code>a.js</code>代码如下。</p>
+<pre><code class="lang-javascript">exports.done = false;
+var b = require(&#39;./b.js&#39;);
+console.log(&#39;在 a.js 之中，b.done = %j&#39;, b.done);
+exports.done = true;
+console.log(&#39;a.js 执行完毕&#39;);
+</code></pre>
+<p>上面代码之中，<code>a.js</code>脚本先输出一个<code>done</code>变量，然后加载另一个脚本文件<code>b.js</code>。注意，此时<code>a.js</code>代码就停在这里，等待<code>b.js</code>执行完毕，再往下执行。</p>
+<p>再看<code>b.js</code>的代码。</p>
+<pre><code class="lang-javascript">exports.done = false;
+var a = require(&#39;./a.js&#39;);
+console.log(&#39;在 b.js 之中，a.done = %j&#39;, a.done);
+exports.done = true;
+console.log(&#39;b.js 执行完毕&#39;);
+</code></pre>
+<p>上面代码之中，<code>b.js</code>执行到第二行，就会去加载<code>a.js</code>，这时，就发生了“循环加载”。系统会去<code>a.js</code>模块对应对象的<code>exports</code>属性取值，可是因为<code>a.js</code>还没有执行完，从<code>exports</code>属性只能取回已经执行的部分，而不是最后的值。</p>
+<p><code>a.js</code>已经执行的部分，只有一行。</p>
+<pre><code class="lang-javascript">exports.done = false;
+</code></pre>
+<p>因此，对于<code>b.js</code>来说，它从<code>a.js</code>只输入一个变量<code>done</code>，值为<code>false</code>。</p>
+<p>然后，<code>b.js</code>接着往下执行，等到全部执行完毕，再把执行权交还给<code>a.js</code>。于是，<code>a.js</code>接着往下执行，直到执行完毕。我们写一个脚本<code>main.js</code>，验证这个过程。</p>
+<pre><code class="lang-javascript">var a = require(&#39;./a.js&#39;);
+var b = require(&#39;./b.js&#39;);
+console.log(&#39;在 main.js 之中, a.done=%j, b.done=%j&#39;, a.done, b.done);
+</code></pre>
+<p>执行<code>main.js</code>，运行结果如下。</p>
+<pre><code class="lang-bash">$ node main.js
+
+在 b.js 之中，a.done = false
+b.js 执行完毕
+在 a.js 之中，b.done = true
+a.js 执行完毕
+在 main.js 之中, a.done=true, b.done=true
+</code></pre>
+<p>上面的代码证明了两件事。一是，在<code>b.js</code>之中，<code>a.js</code>没有执行完毕，只执行了第一行。二是，<code>main.js</code>执行到第二行时，不会再次执行<code>b.js</code>，而是输出缓存的<code>b.js</code>的执行结果，即它的第四行。</p>
+<pre><code class="lang-javascript">exports.done = true;
+</code></pre>
+<p>另外，由于 CommonJS 模块遇到循环加载时，返回的是当前已经执行的部分的值，而不是代码全部执行后的值，两者可能会有差异。所以，输入变量的时候，必须非常小心。</p>
+<pre><code class="lang-javascript">var a = require(&#39;a&#39;); // 安全的写法
+var foo = require(&#39;a&#39;).foo; // 危险的写法
+
+exports.good = function (arg) {
+  return a.foo(&#39;good&#39;, arg); // 使用的是 a.foo 的最新值
+};
+
+exports.bad = function (arg) {
+  return foo(&#39;bad&#39;, arg); // 使用的是一个部分加载时的值
+};
+</code></pre>
+<p>上面代码中，如果发生循环加载，<code>require(&#39;a&#39;).foo</code>的值很可能后面会被改写，改用<code>require(&#39;a&#39;)</code>会更保险一点。</p>
+<h3>3）ES6模块的循环加载</h3>
+<pre><code class="lang-javascript">// a.mjs
+import {bar} from &#39;./b&#39;;
+console.log(&#39;a.mjs&#39;);
+console.log(bar);
+export let foo = &#39;foo&#39;;
+
+// b.mjs
+import {foo} from &#39;./a&#39;;
+console.log(&#39;b.mjs&#39;);
+console.log(foo);
+export let bar = &#39;bar&#39;;
+</code></pre>
+<p>执行<code>a.mjs</code>，结果如下。</p>
+<pre><code class="lang-bash">$ node --experimental-modules a.mjs
+b.mjs
+ReferenceError: foo is not defined
+</code></pre>
+<p>执行<code>a.mjs</code>以后会报错，<code>foo</code>变量未定义，这是为什么？</p>
+<p>让我们一行行来看，ES6 循环加载是怎么处理的。首先，执行<code>a.mjs</code>以后，引擎发现它加载了<code>b.mjs</code>，因此会优先执行<code>b.mjs</code>，然后再执行<code>a.mjs</code>。接着，执行<code>b.mjs</code>的时候，已知它从<code>a.mjs</code>输入了<code>foo</code>接口，这时不会去执行<code>a.mjs</code>，而是认为这个接口已经存在了，继续往下执行。执行到第三行<code>console.log(foo)</code>的时候，才发现这个接口根本没定义，因此报错。</p>
+<p>解决这个问题的方法，就是让<code>b.mjs</code>运行的时候，<code>foo</code>已经有定义了。这可以通过将<code>foo</code>写成函数来解决。</p>
+<pre><code class="lang-javascript">/ a.mjs
+import {bar} from &#39;./b&#39;;
+console.log(&#39;a.mjs&#39;);
+console.log(bar());
+function foo() { return &#39;foo&#39; }
+export {foo};
+
+// b.mjs
+import {foo} from &#39;./a&#39;;
+console.log(&#39;b.mjs&#39;);
+console.log(foo());
+function bar() { return &#39;bar&#39; }
+export {bar};
+</code></pre>
+<p>这时再执行<code>a.mjs</code>就可以得到预期结果。</p>
+<pre><code class="lang-bash">$ node --experimental-modules a.mjs
+b.mjs
+foo
+a.mjs
+bar
+</code></pre>
+<p>这是因为函数具有提升作用，在执行<code>import {bar} from &#39;./b&#39;</code>时，函数<code>foo</code>就已经有定义了，所以<code>b.mjs</code>加载的时候不会报错。这也意味着，如果把函数<code>foo</code>改写成函数表达式，也会报错。</p>
+<pre><code class="lang-javascript">// a.mjs
+import {bar} from &#39;./b&#39;;
+console.log(&#39;a.mjs&#39;);
+console.log(bar());
+const foo = () =&gt; &#39;foo&#39;;
+export {foo};
+</code></pre>
+<p>上面代码的第四行，改成了函数表达式，就不具有提升作用，执行就会报错。</p>
+<footer class="page-footer"><span class="copyright">Copyright © lucky__star 2020 all right reserved，powered by Gitbook</span><span class="footer-modification">本书发布时间：
+2020-03-09 23:15
+</span></footer></script></p>
                                 
                                 </section>
                             
@@ -659,7 +1081,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Module的加载实现","level":"1.24","depth":1,"next":{"title":"编程风格","level":"1.25","depth":1,"path":"programming-style.md","ref":"programming-style.md","articles":[]},"previous":{"title":"Module的语法","level":"1.23","depth":1,"path":"Module.md","ref":"Module.md","articles":[]},"dir":"neutral"},"config":{"plugins":["code@0.1.0","back-to-top-button@0.1.4","search-pro@2.0.2","-search","github@2.0.0","pageview-count@1.0.1","styles-less@1.0.0","multipart@0.3.0","splitter@0.0.8","donate@1.0.2","custom-favicon@0.0.4","tbfed-pagefooter@0.0.1","auto-scroll-table@0.0.5","heading-anchors","cuav-chapters","prism@2.4.0","-highlight","-sharing"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © lucky__star 2020","modify_label":"本书发布时间：","modify_format":"YYYY-MM-DD HH:mm"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"],"lang":{"flow":"typescript"}},"github":{"url":"https://github.com/xuqichuang/es6"},"styles-less":{},"splitter":{},"search-pro":{},"auto-scroll-table":{},"cuav-chapters":{"summaryMaxSize":20,"useLimitExpanded":false},"multipart":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"donate":{"alipay":"","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"http://photonj.photo.store.qq.com/psc?/V13gPhs63CGiSQ/KMnzwBNJT4ZeiPmlYdobb*Qhqb4yWSLU9F37KZ.frb7oO*4iG4Y*ker4Zo5huSOkukeOEd3zrLT1d5nk55xbXw!!/b&bo=gASABIAEgAQRECc!&rf=viewer_311","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"favicon":"images/favicon.ico","back-to-top-button":{},"pageview-count":{},"custom-favicon":{},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"lucky__star","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ES6 入门简介","links":{"sidebar":{"博客中心":"https://xuqichuang.gitbook.io/es6/"}},"gitbook":"3.2.3","description":"好记性不如G笔记"},"file":{"path":"Module-loading.md","mtime":"2020-02-28T16:41:42.976Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-08T15:28:16.636Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Module的加载实现","level":"1.24","depth":1,"next":{"title":"编程风格","level":"1.25","depth":1,"path":"programming-style.md","ref":"programming-style.md","articles":[]},"previous":{"title":"Module的语法","level":"1.23","depth":1,"path":"Module.md","ref":"Module.md","articles":[]},"dir":"ltr"},"config":{"plugins":["code@0.1.0","back-to-top-button@0.1.4","search-pro@2.0.2","-search","github@2.0.0","pageview-count@1.0.1","styles-less@1.0.0","multipart@0.3.0","splitter@0.0.8","donate@1.0.2","custom-favicon@0.0.4","tbfed-pagefooter@0.0.1","auto-scroll-table@0.0.5","heading-anchors","cuav-chapters","prism@2.4.0","-highlight","-sharing"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © lucky__star 2020","modify_label":"本书发布时间：","modify_format":"YYYY-MM-DD HH:mm"},"prism":{"css":["prismjs/themes/prism-solarizedlight.css"],"lang":{"flow":"typescript"}},"github":{"url":"https://github.com/xuqichuang/es6"},"styles-less":{},"splitter":{},"search-pro":{},"auto-scroll-table":{},"cuav-chapters":{"summaryMaxSize":20,"useLimitExpanded":false},"multipart":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"donate":{"alipay":"","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"http://photonj.photo.store.qq.com/psc?/V13gPhs63CGiSQ/KMnzwBNJT4ZeiPmlYdobb*Qhqb4yWSLU9F37KZ.frb7oO*4iG4Y*ker4Zo5huSOkukeOEd3zrLT1d5nk55xbXw!!/b&bo=gASABIAEgAQRECc!&rf=viewer_311","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"favicon":"images/favicon.ico","back-to-top-button":{},"pageview-count":{},"custom-favicon":{},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"lucky__star","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ES6 入门简介","links":{"sidebar":{"博客中心":"https://xuqichuang.gitbook.io/es6/"}},"gitbook":"3.2.3","description":"好记性不如G笔记"},"file":{"path":"Module-loading.md","mtime":"2020-03-09T15:15:42.368Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-09T15:16:06.232Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
