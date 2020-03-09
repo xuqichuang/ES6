@@ -27,7 +27,7 @@
 * [编程风格](programming-style.md)
 * [读懂规格](understand-specification.md)
 * [异步遍历器](async-iterator.md)
-* [ArrayBuffer](ArrayBuffer.md)
+* [最新提案](newest-proposal.md)
 * [参考链接](reference-linking.md)
 
 
