@@ -298,6 +298,342 @@ circle.area = function () {};
 
 ## 6. export default 命令
 
+`export default`命令，为模块指定默认输出。
+
+```javascript
+// export-default.js
+export default function () {
+  console.log('foo');
+}
+```
+
+其他模块加载该模块时，`import`命令可以为该匿名函数指定任意名字。
+
+```javascript
+// import-default.js
+import customName from './export-default';
+customName(); // 'foo'
+```
+
+`export default`命令用在非匿名函数前，也是可以的。
+
+```javascript
+// export-default.js
+export default function foo() {
+  console.log('foo');
+}
+
+// 或者写成
+
+function foo() {
+  console.log('foo');
+}
+
+export default foo;
+```
+
+上面代码中，`foo`函数的函数名`foo`，在模块外部是无效的。加载的时候，视同匿名函数加载。
+
+```javascript
+// 第一组
+export default function crc32() { // 输出
+  // ...
+}
+
+import crc32 from 'crc32'; // 输入
+
+// 第二组
+export function crc32() { // 输出
+  // ...
+};
+
+import {crc32} from 'crc32'; // 输入
+```
+
+`export default`命令用于指定模块的默认输出，一个模块只能有一个默认输出
+
+`export default`命令其实只是输出一个叫做`default`的变量，所以它后面不能跟变量声明语句。
+
+```javascript
+// 正确
+export var a = 1;
+
+// 正确
+var a = 1;
+export default a;
+
+// 错误
+export default var a = 1;
+```
+
+有了`export default`命令，输入模块时就非常直观了，以输入 lodash 模块为例。
+
+```javascript
+import _ from 'lodash';
+```
+
+如果想在一条`import`语句中，同时输入默认方法和其他接口，可以写成下面这样。
+
+```javascript
+import _, { each, forEach } from 'lodash';
+```
+
+对应上面代码的`export`语句如下。
+
+```javascript
+export default function (obj) {
+  // ···
+}
+
+export function each(obj, iterator, context) {
+  // ···
+}
+
+export { each as forEach };
+```
+
+`export default`也可以用来输出类。
+
+```javascript
+// MyClass.js
+export default class { ... }
+
+// main.js
+import MyClass from 'MyClass';
+let o = new MyClass();
+```
+
+## 7. export 和 import 的复合写法
+
+如果在一个模块之中，先输入后输出同一个模块，`import`语句可以与`export`语句写在一起。
+
+```javascript
+export { foo, bar } from 'my_module';
+
+// 可以简单理解为
+import { foo, bar } from 'my_module';
+export { foo, bar };
+```
+
+上面代码中，`export`和`import`语句可以结合在一起，写成一行。但需要注意的是，写成一行以后，`foo`和`bar`实际上并没有被导入当前模块，只是相当于对外转发了这两个接口，导致当前模块不能直接使用`foo`和`bar`。
+
+## 8. 模块的继承
+
+假设有一个`circleplus`模块，继承了`circle`模块。
+
+```javascript
+// circleplus.js
+
+export * from 'circle';
+export var e = 2.71828182846;
+export default function(x) {
+  return Math.exp(x);
+}
+```
+
+上面代码中的`export *`，表示再输出`circle`模块的所有属性和方法。注意，`export *`命令会忽略`circle`模块的`default`方法。然后，上面代码又输出了自定义的`e`变量和默认方法。
+
+这时，也可以将`circle`的属性或方法，改名后再输出。
+
+```javascript
+// circleplus.js
+
+export { area as circleArea } from 'circle';
+```
+
+加载上面模块的写法如下。
+
+```javascript
+// main.js
+
+import * as math from 'circleplus';
+import exp from 'circleplus';
+console.log(exp(math.e));
+```
+
+上面代码中的`import exp`表示，将`circleplus`模块的默认方法加载为`exp`方法。
+
+## 9. 跨模块的常量
+
+`const`声明的常量只在当前代码块有效。如果想设置跨模块的常量（即跨多个文件），或者说一个值要被多个模块共享，可以采用下面的写法。
+
+```javascript
+// constants.js 模块
+export const A = 1;
+export const B = 3;
+export const C = 4;
+
+// test1.js 模块
+import * as constants from './constants';
+console.log(constants.A); // 1
+console.log(constants.B); // 3
+
+// test2.js 模块
+import {A, B} from './constants';
+console.log(A); // 1
+console.log(B); // 3
+```
+
+如果要使用的常量非常多，可以建一个专门的`constants`目录，将各种常量写在不同的文件里面，保存在该目录下。
+
+```javascript
+// constants/db.js
+export const db = {
+  url: 'http://my.couchdbserver.local:5984',
+  admin_username: 'admin',
+  admin_password: 'admin password'
+};
+
+// constants/user.js
+export const users = ['root', 'admin', 'staff', 'ceo', 'chief', 'moderator'];
+```
+
+然后，将这些文件输出的常量，合并在`index.js`里面。
+
+```javascript
+// constants/index.js
+export {db} from './db';
+export {users} from './users';
+```
+
+使用的时候，直接加载`index.js`就可以了。
+
+```javascript
+// script.js
+import {db, users} from './constants/index';
+```
+
+## 10. import()
+
+### 1）简介
+
+`import()`函数，支持动态加载模块。
+
+```javascript
+import(specifier)
+```
+
+上面代码中，`import`函数的参数`specifier`，指定所要加载的模块的位置。`import`命令能够接受什么参数，`import()`函数就能接受什么参数，两者区别主要是后者为动态加载。
+
+`import()`返回一个 Promise 对象。下面是一个例子。
+
+```javascript
+const main = document.querySelector('main');
+
+import(`./section-modules/${someVariable}.js`)
+  .then(module => {
+    module.loadPageInto(main);
+  })
+  .catch(err => {
+    main.textContent = err.message;
+  });
+```
+
+`import()`函数可以用在任何地方，不仅仅是模块，非模块的脚本也可以使用。它是运行时执行，也就是说，什么时候运行到这一句，就会加载指定的模块。另外，`import()`函数与所加载的模块没有静态连接关系，这点也是与`import`语句不相同。`import()`类似于 Node 的`require`方法，区别主要是前者是异步加载，后者是同步加载。
+
+### 2）使用场合
+
+#### （1）按需加载
+
+`import()`可以在需要的时候，再加载某个模块。
+
+```javascript
+button.addEventListener('click', event => {
+  import('./dialogBox.js')
+  .then(dialogBox => {
+    dialogBox.open();
+  })
+  .catch(error => {
+    /* Error handling */
+  })
+});
+```
+
+#### （2）条件加载
+
+`import()`可以放在`if`代码块，根据不同的情况，加载不同的模块。
+
+```javascript
+if (condition) {
+  import('moduleA').then(...);
+} else {
+  import('moduleB').then(...);
+}
+```
+
+上面代码中，如果满足条件，就加载模块 A，否则加载模块 B。
+
+#### （3）动态的模块路径
+
+`import()`允许模块路径动态生成。
+
+```javascript
+import(f())
+.then(...);
+```
+
+上面代码中，根据函数`f`的返回结果，加载不同的模块。
+
+### 3）注意点
+
+`import()`加载模块成功以后，这个模块会作为一个对象，当作`then`方法的参数。因此，可以使用对象解构赋值的语法，获取输出接口。
+
+```javascript
+import('./myModule.js')
+.then(({export1, export2}) => {
+  // ...·
+});
+```
+
+上面代码中，`export1`和`export2`都是`myModule.js`的输出接口，可以解构获得。
+
+如果模块有`default`输出接口，可以用参数直接获得。
+
+```javascript
+import('./myModule.js')
+.then(myModule => {
+  console.log(myModule.default);
+});
+```
+
+上面的代码也可以使用具名输入的形式。
+
+```javascript
+import('./myModule.js')
+.then(({default: theDefault}) => {
+  console.log(theDefault);
+});
+```
+
+如果想同时加载多个模块，可以采用下面的写法。
+
+```javascript
+Promise.all([
+  import('./module1.js'),
+  import('./module2.js'),
+  import('./module3.js'),
+])
+.then(([module1, module2, module3]) => {
+   ···
+});
+```
+
+`import()`也可以用在 async 函数之中。
+
+```javascript
+async function main() {
+  const myModule = await import('./myModule.js');
+  const {export1, export2} = await import('./myModule.js');
+  const [module1, module2, module3] =
+    await Promise.all([
+      import('./module1.js'),
+      import('./module2.js'),
+      import('./module3.js'),
+    ]);
+}
+main();
+```
+
 
 
 
